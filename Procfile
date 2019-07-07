@@ -1,1 +1,1 @@
-web: gunicorn tech_hunt.wsgi
+web:gunicorn tech_hunt.wsgi
