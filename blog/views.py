@@ -1,8 +1,15 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+from blog.PostSerializer import PostSerializer
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
 
 
 def home(request):
@@ -37,7 +44,7 @@ class UserPostListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        user = get_object_or_404(User,username=self.kwargs.get('username'))
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
@@ -86,3 +93,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+@csrf_exempt
+def post_list(request):
+    if request.method == 'GET':
+        post = Post.objects.all()
+        serializer = PostSerializer(post, many=True)
+        return JsonResponse([serializer.data], safe=False)
+    elif request.method == 'POST':
+        pass
