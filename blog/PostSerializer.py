@@ -1,5 +1,3 @@
-from django.contrib.auth.models import User
-from numpy.core.defchararray import rstrip
 from rest_framework import serializers
 
 from blog.models import Post

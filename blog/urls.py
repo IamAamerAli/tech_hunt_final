@@ -1,7 +1,7 @@
 from django.urls import path
 from blog import views
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, \
-    post_list,post_details
+    post_list, post_details
 
 # class PostSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
