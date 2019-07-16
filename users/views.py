@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
+# region User registration form
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -16,7 +17,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
-
+# endregion
 
 # region UserInformation not in use just for testing
 # def user_information(request):
@@ -31,7 +32,7 @@ def register(request):
 #     return render(request, 'users/userinfo.html', {'user_info_form': user_info_form})
 # endregion
 
-
+# region User profile form
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -53,3 +54,4 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+# endregion

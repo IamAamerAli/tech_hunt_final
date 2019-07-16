@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -111,9 +112,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    #     'DEFAULT_PERMISSION_CLASSES': (
+    #        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #         'rest_framework.permissions.IsAuthenticated',
+    # 'rest_framework.permissions.IsAdminUser',
+    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #     'rest_framework.authentication.BasicAuthentication',
+        #     'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
 
 # Internationalization
