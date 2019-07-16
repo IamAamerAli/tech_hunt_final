@@ -41,7 +41,7 @@ urlpatterns = [
 
     # region class based view url commented
     path('api/post/', views.PostList.as_view()),
-    path('api/post/<int:pk>', views.PostDetails.as_view()),
+    path('api/post/<int:pk>/', views.PostDetails.as_view()),
     # endregion
 
     # region Token Authentication paths
@@ -51,7 +51,7 @@ urlpatterns = [
 
     # region User Post related paths
     path('api/user/', views.UserList.as_view()),
-    path('api/user/<int:pk>', views.USerDetails.as_view()),
+    path('api/user/<int:pk>/', views.USerDetails.as_view()),
     # endregion
 
     # endregion
